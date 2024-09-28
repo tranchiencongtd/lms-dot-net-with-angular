@@ -1,0 +1,50 @@
+<!-- Login -->
+<app-hdnx-loading [show]="isLoading">
+    <div class="user-area ptb-100">
+        <div class="container">
+            <div class="user-all-form">
+                <form [formGroup]="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control border-profile" formControlName="email" />
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input class="form-control" type="password" name="password" formControlName="password" />
+                    </div>
+                    <div class="btn-box">
+                        <a href="javascript:void(0)" class="default-btn with-btn-login" (click)="loginWithEmail()">Đăng nhập<span></span></a>
+                    </div>
+                    <div class="sub-title">
+                        <span>Hoặc đăng nhập</span>
+                    </div>
+                    <div class="login-with-account">
+                        <ul>
+                            <li>
+                                <div class="login-social">
+                                    <a href="javascript:void(0)" (click)="loginWithFaceBook()">
+                                        <i class="bx bxl-facebook-circle"></i>
+                                        <span>Đăng nhập với Facebook</span>
+                                    </a>
+                                </div>
+    
+                            </li>
+                            <li>
+                                <div class="login-social">
+                                    <asl-google-signin-button type='standard' size='large' shape="square" width="400" theme="filled_blue"></asl-google-signin-button>
+                                </div>
+    
+                            </li>
+                        </ul>
+                    </div>
+                    <p>
+                        Bạn chưa có tài khoản?
+                        <a routerLink="/register">Tạo tài khoản</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</app-hdnx-loading>
+

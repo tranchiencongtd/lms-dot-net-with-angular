@@ -1,0 +1,630 @@
+<div class="courses-details-area ptb-50">
+    <div class="container">
+        <div class="page-title-content">
+            <ul>
+                <li><a routerLink="/">Home</a></li>
+                <li><a routerLink="/">Development</a></li>
+                <li>Python for Finance: Investment Fundamentals & Data Analytics</li>
+            </ul>
+            <h2>Python for Finance: Investment Fundamentals & Data Analytics</h2>
+            <div class="rating">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <div class="rating-count me-2">
+                    <span>4.0 (1 rating)</span>
+                </div>
+                <i class="bx bx-equalizer"></i>
+                <div class="rating-count me-2">Nguyễn Minh Tuấn</div>
+                <i class="bx bx-equalizer"></i>
+                <div class="rating-count">1000 Học viên</div>
+            </div>
+        </div>
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 pb-4">
+                <div class="courses-details-desc pb-5">
+                    <ul class="nav-tabset">
+                        <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab1' }">
+                            <span (click)="switchTab($event, 'tab1')"> Infomation Of Course </span>
+                        </li>
+                        <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab2' }">
+                            <span (click)="switchTab($event, 'tab2')"> Content Of Course </span>
+                        </li>
+                        <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab3' }">
+                            <span (click)="switchTab($event, 'tab3')"> Author </span>
+                        </li>
+                        <li class="nav-tab" [ngClass]="{ active: currentTab === 'tab4' }">
+                            <span (click)="switchTab($event, 'tab4')">Reviews</span>
+                        </li>
+                    </ul>
+                    <div class="tabs-container">
+                        <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
+                            <div class="courses-overview">
+                                <h3>Course Description</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                                </p>
+                                <h3>Certification</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                                </p>
+                                <h3>Who this course is for</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+                                    gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pane" id="tab2" *ngIf="currentTab === 'tab2'">
+                            <div class="courses-curriculum">
+                                <h3>Python Introduction</h3>
+                                <ul>
+                                    <li>
+                                        <a
+                                            routerLink="/detail-content-course"
+                                            routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{
+                                                exact: true
+                                            }"
+                                            class="popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">Python Introduction</span>
+                                            <div class="courses-meta">
+                                                <span class="questions">5 questions</span>
+                                                <span class="duration">01 Hour</span>
+                                                <span class="status">Preview</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3>Stepping into the World of Python</h3>
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">NumPy Introduction</span>
+                                            <div class="courses-meta">
+                                                <span class="duration">15 Min</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">NumPy Getting Started</span>
+                                            <div class="courses-meta">
+                                                <span class="duration">30 Min</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">NumPy Creating Arrays</span>
+                                            <div class="courses-meta">
+                                                <span class="duration">45 Min</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">NumPy Array Indexing</span>
+                                            <div class="courses-meta">
+                                                <span class="questions">4 questions</span>
+                                                <span class="duration">1 Hour</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">NumPy Array Slicing</span>
+                                            <div class="courses-meta">
+                                                <span class="duration">1.5 Hour</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3>Python MySQL</h3>
+                                <ul>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">Python MySQL</span>
+                                            <div class="courses-meta">
+                                                <span class="duration">01 Hour</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">Python MySQL Create Database</span>
+                                            <div class="courses-meta">
+                                                <span class="questions">3 questions</span>
+                                                <span class="duration">1.1 Hour</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                            class="locked popup-youtube d-flex justify-content-between align-items-center"
+                                        >
+                                            <span class="courses-name">Python MySQL Create Table</span>
+                                            <div class="courses-meta">
+                                                <span class="duration">1.5 Hour</span>
+                                                <span class="status locked"><i class="flaticon-password"></i></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pane" id="tab3" *ngIf="currentTab === 'tab3'">
+                            <div class="courses-instructor">
+                                <div class="single-advisor-box">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="advisor-image">
+                                                <img
+                                                    src="https://angular.envytheme.com/odemy-ng/assets/img/advisor/img2.jpg"
+                                                    alt="image"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="advisor-content">
+                                                <h3>Sarah Taylor</h3>
+                                                <span class="sub-title">Agile Project Expert</span>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                                                    ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas
+                                                    accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,
+                                                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                    labore et dolore magna aliqua.
+                                                </p>
+                                                <ul class="social-link">
+                                                    <li>
+                                                        <a href="#" class="d-block" target="_blank"
+                                                            ><i class="bx bxl-facebook"></i
+                                                        ></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-block" target="_blank"
+                                                            ><i class="bx bxl-twitter"></i
+                                                        ></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-block" target="_blank"
+                                                            ><i class="bx bxl-instagram"></i
+                                                        ></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="d-block" target="_blank"
+                                                            ><i class="bx bxl-linkedin"></i
+                                                        ></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pane" id="tab4" *ngIf="currentTab === 'tab4'">
+                            <div class="courses-reviews">
+                                <h3>Đánh giá</h3>
+                                <div class="rating">
+                                    <span class="bx bxs-star checked"></span>
+                                    <span class="bx bxs-star checked"></span>
+                                    <span class="bx bxs-star checked"></span>
+                                    <span class="bx bxs-star checked"></span>
+                                    <span class="bx bxs-star"></span>
+                                </div>
+                                <div class="rating-count">
+                                    <span>Trung bình 4.1 dựa trên 1000 đánh giá.</span>
+                                </div>
+                                <div class="row">
+                                    <div class="side">
+                                        <div>5 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>02</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>4 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-4"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>03</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>3 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-3"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>04</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>2 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>05</div>
+                                    </div>
+                                    <div class="side">
+                                        <div>1 star</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="bar-container">
+                                            <div class="bar-1"></div>
+                                        </div>
+                                    </div>
+                                    <div class="side right">
+                                        <div>00</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="courses-review-comments">
+                                <h3>3 Reviews</h3>
+                                <div class="user-review">
+                                    <img
+                                        src="https://angular.envytheme.com/odemy-ng/assets/img/user1.jpg"
+                                        alt="image"
+                                    />
+                                    <div class="review-rating">
+                                        <div class="review-stars">
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                        </div>
+                                        <span class="d-inline-block">James Anderson</span>
+                                    </div>
+                                    <span class="d-block sub-comment">Excellent</span>
+                                    <p>
+                                        Very well built theme, couldn't be happier with it. Can't wait for future
+                                        updates to see what else they add in.
+                                    </p>
+                                </div>
+                                <div class="user-review">
+                                    <img
+                                        src="https://angular.envytheme.com/odemy-ng/assets/img/user2.jpg"
+                                        alt="image"
+                                    />
+                                    <div class="review-rating">
+                                        <div class="review-stars">
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star"></i>
+                                            <i class="bx bxs-star"></i>
+                                        </div>
+                                        <span class="d-inline-block">Sarah Taylor</span>
+                                    </div>
+                                    <span class="d-block sub-comment">Video Quality!</span>
+                                    <p>Was really easy to implement and they quickly answer my additional questions!</p>
+                                </div>
+                                <div class="user-review">
+                                    <img
+                                        src="https://angular.envytheme.com/odemy-ng/assets/img/user3.jpg"
+                                        alt="image"
+                                    />
+                                    <div class="review-rating">
+                                        <div class="review-stars">
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                        </div>
+                                        <span class="d-inline-block">David Warner</span>
+                                    </div>
+                                    <span class="d-block sub-comment">Perfect Coding!</span>
+                                    <p>
+                                        Stunning design, very dedicated crew who welcome new ideas suggested by
+                                        customers, nice support.
+                                    </p>
+                                </div>
+                                <div class="user-review">
+                                    <img
+                                        src="https://angular.envytheme.com/odemy-ng/assets/img/user4.jpg"
+                                        alt="image"
+                                    />
+                                    <div class="review-rating">
+                                        <div class="review-stars">
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star checked"></i>
+                                            <i class="bx bxs-star"></i>
+                                        </div>
+                                        <span class="d-inline-block">King Kong</span>
+                                    </div>
+                                    <span class="d-block sub-comment">Perfect Video!</span>
+                                    <p>
+                                        Stunning design, very dedicated crew who welcome new ideas suggested by
+                                        customers, nice support.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="courses-area bg-f8f9f8 p-3">
+                    <div class="section-title">
+                        <h2>Các khoá học liên quan</h2>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-courses-box">
+                                <div class="courses-image">
+                                    <a routerLink="/detail-courses" class="d-block image">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/courses/img1.jpg"
+                                            alt="image"
+                                        />
+                                    </a>
+                                    <a routerLink="/" class="fav"><i class="flaticon-heart"></i></a>
+                                    <div class="price shadow">$39</div>
+                                </div>
+                                <div class="courses-content">
+                                    <div class="course-author d-flex align-items-center">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/user1.jpg"
+                                            class="rounded-circle"
+                                            alt="image"
+                                        />
+                                        <span>Alex Morgan</span>
+                                    </div>
+                                    <h3>
+                                        <a routerLink="/detail-courses"
+                                            >The Data Science Course 2020: Complete Data Science Bootcamp</a
+                                        >
+                                    </h3>
+                                    <ul class="courses-box-footer d-flex justify-content-between align-items-center">
+                                        <li><i class="flaticon-agenda"></i> 15 Lessons</li>
+                                        <li><i class="flaticon-people"></i> 145 Students</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-courses-box">
+                                <div class="courses-image">
+                                    <a routerLink="/detail-courses" class="d-block image">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/courses/img2.jpg"
+                                            alt="image"
+                                        />
+                                    </a>
+                                    <a routerLink="/" class="fav"><i class="flaticon-heart"></i></a>
+                                    <div class="price shadow">$49</div>
+                                </div>
+                                <div class="courses-content">
+                                    <div class="course-author d-flex align-items-center">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/user2.jpg"
+                                            class="rounded-circle"
+                                            alt="image"
+                                        />
+                                        <span>Sarah Taylor</span>
+                                    </div>
+                                    <h3>
+                                        <a routerLink="/detail-courses"
+                                            >Java Programming Masterclass for Software Developers</a
+                                        >
+                                    </h3>
+                                    <ul class="courses-box-footer d-flex justify-content-between align-items-center">
+                                        <li><i class="flaticon-agenda"></i> 20 Lessons</li>
+                                        <li><i class="flaticon-people"></i> 100 Students</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-courses-box">
+                                <div class="courses-image">
+                                    <a routerLink="/detail-courses" class="d-block image">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/courses/img3.jpg"
+                                            alt="image"
+                                        />
+                                    </a>
+                                    <a routerLink="/" class="fav"><i class="flaticon-heart"></i></a>
+                                    <div class="price shadow">$59</div>
+                                </div>
+                                <div class="courses-content">
+                                    <div class="course-author d-flex align-items-center">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/user3.jpg"
+                                            class="rounded-circle"
+                                            alt="image"
+                                        />
+                                        <span>David Warner</span>
+                                    </div>
+                                    <h3>
+                                        <a routerLink="/detail-courses"
+                                            >Deep Learning A-Z™: Hands-On Artificial Neural Networks</a
+                                        >
+                                    </h3>
+                                    <ul class="courses-box-footer d-flex justify-content-between align-items-center">
+                                        <li><i class="flaticon-agenda"></i> 20 Lessons</li>
+                                        <li><i class="flaticon-people"></i> 150 Students</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-courses-box">
+                                <div class="courses-image">
+                                    <a routerLink="/detail-courses" class="d-block image">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/courses/img3.jpg"
+                                            alt="image"
+                                        />
+                                    </a>
+                                    <a routerLink="/" class="fav"><i class="flaticon-heart"></i></a>
+                                    <div class="price shadow">$59</div>
+                                </div>
+                                <div class="courses-content">
+                                    <div class="course-author d-flex align-items-center">
+                                        <img
+                                            src="https://angular.envytheme.com/odemy-ng/assets/img/user3.jpg"
+                                            class="rounded-circle"
+                                            alt="image"
+                                        />
+                                        <span>David Warner</span>
+                                    </div>
+                                    <h3>
+                                        <a routerLink="/detail-courses"
+                                            >Deep Learning A-Z™: Hands-On Artificial Neural Networks</a
+                                        >
+                                    </h3>
+                                    <ul class="courses-box-footer d-flex justify-content-between align-items-center">
+                                        <li><i class="flaticon-agenda"></i> 20 Lessons</li>
+                                        <li><i class="flaticon-people"></i> 150 Students</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12">
+                <div class="courses-details-info">
+                    <div class="image">
+                        <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide">
+                            <a
+                                data-lg-size="1280-720"
+                                data-src="https://www.youtube.com/watch?v=PWvPbGWVRrU"
+                                data-sub-html="<p>Watch Video</p>"
+                                class="d-block"
+                            >
+                                <img
+                                    src="https://angular.envytheme.com/odemy-ng/assets/img/courses/img1.jpg"
+                                    alt="image"
+                                />
+                                <div class="content">
+                                    <i class="flaticon-play"></i>
+                                    <span>Xem preview</span>
+                                </div>
+                            </a>
+                        </lightgallery>
+                    </div>
+                    <ul class="info">
+                        <li class="price">
+                            <div class="d-flex justify-content-center align-items-center">
+                                150.000đ
+                                <span style="font-size: smaller"><del>250.000 đ</del></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span><i class="flaticon-teacher"></i> Tác giả</span>
+                                Nguyễn Minh Tuấn
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="btn-box">
+                        <a routerLink="/detail-courses" class="default-btn"
+                            ><i class="flaticon-shopping-cart"></i>Liện hệ ngay<span></span
+                        ></a>
+                    </div>
+
+                    <div class="courses-share">
+                        <div>
+                            <a href=""
+                                ><span><i class="flaticon-heart"></i>&nbsp;&nbsp;Yêu thích</span></a
+                            >
+                        </div>
+                        <div class="share-info">
+                            <ul class="social-link">
+                                <li>
+                                    <a href="#" class="d-block" target="_blank"><i class="bx bxl-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-block" target="_blank"><i class="bx bxl-instagram"></i></a>
+                                </li>
+                            </ul>
+                            <span>Chia sẻ khoá học&nbsp;<i class="flaticon-share"></i></span>
+                        </div>
+                    </div>
+
+                    <ul class="info">
+                        <li>
+                            <span><i class="bx bx-star"></i> Học tập chủ động và tương tác</span>
+                        </li>
+                        <li>
+                            <span><i class="bx bx-star"></i>Thực hành và đánh giá xuyên suốt</span>
+                        </li>
+                        <li>
+                            <span><i class="bx bx-star"></i>Hoạt động học tập đa dạng và hướng mục tiêu</span>
+                        </li>
+                        <li>
+                            <span><i class="bx bx-star"></i>Môi trường lập trình tương tác tại chỗ</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

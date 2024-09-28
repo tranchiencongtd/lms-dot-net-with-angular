@@ -1,0 +1,186 @@
+<!-- Start Breadcrumbs -->
+<app-breadcrumbs title="Chi tiết nội dụng khóc học" [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+<!-- End Breadcrumbs -->
+
+<div class="row">
+    <div class="col-xxl-3">
+        <app-hdnx-loading [show]="isLoading">
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="card-title mb-0">List of courses</h5>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <a href="javascript:void(0);" (click)="addContentCourse()" class="text-reset text-decoration-underline">Add Chapter</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="search-box mb-3">
+                        <input type="text" class="form-control" id="searchResultList" placeholder="Search content of the course" [(ngModel)]="searchTerm" (ngModelChange)="performSearch()">
+                        <i class="ri-search-line search-icon"></i>
+                    </div>
+                    <accordion class="accordion accordion-border-box  mt-3" [closeOthers]="true" id="accordionlefticon">
+                        <accordion-group class="accordion-item" *ngFor="let content of listContentCourse" (click)="clickHeaderOfList(content.id, content.name)">
+                            <h2 accordion-heading class="accordion-header" id="accordionlefticonExample{{content.id}}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse">
+                                    {{content?.name}} <small class="ms-1 align-baseline">({{content.listContentCourseDetails?.length}} chương)</small>
+                                </button>
+
+                            </h2>
+                            <div id="accor_lefticonExamplecollapse{{content?.id}}" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <ul class="list-group list">
+                                        <li>
+                                            <button class="btn btn-primary w-100" (click)="addDetailForCourse(content.id)"><i class="bi bi-bag align-baseline me-1"></i> Thêm</button>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action" [class.active]="item.id === activeItemIndex" (click)="onClickContentCourse(item.id)" *ngFor="let item of content.listContentCourseDetails">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0 avatar-xs">
+                                                    <div class="avatar-title rounded bg-danger-subtle text-danger">
+                                                        <i [ngClass]="{'bi bi-play': item.id === activeItemIndex, 'bi bi-stop-fill': item.id !== activeItemIndex}"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1 ms-2  content-course">
+                                                    <a href="javascript:void(0);" (click)="getDataOfContentDetails(item.id)" class="stretched-link text-reset">{{item?.nameSubContent}}</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+            </div>
+        </app-hdnx-loading>
+
+    </div><!--end col-->
+
+    <div class="col-xxl-9">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h5 class="card-title mb-3">Infomation of course</h5>
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                        <label for="Property-title-input" class="form-label">Name chapter <span class="text-danger">*</span></label>
+                        <div class="row">
+                            <div class="col-lg-11">
+                                <input type="text" id="Property-title-input" class="form-control" placeholder="Input name of chapter" [(ngModel)]="contentName" required>
+                            </div>
+                            <div class="col-lg-1">
+                                <button type="button" (click)="updateContentCourse()" class="btn btn-primary w-100"><i class="bi bi-clipboard2-check align-baseline me-1"></i> Save</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card-body" [hidden]="!isShowEditContent">
+                <app-hdnx-loading [show]="isLoadingContent">
+                    <form [formGroup]="contentDetailsCourseForm" (submit)="saveContentCourseDetails()">
+                        <div class="mb-3">
+                            <label class="form-label">Video content of course<span class="text-danger">*</span></label>
+                            <div class="ratio ratio-16x9 mb-3" [hidden]="!isReviewVideo">
+                                <div #artplayerCreateCourseDetails></div>
+                            </div>
+                            <dropzone [hidden]="isReviewVideo" class="dropzone" [config]="dropzoneVideoConfig" [message]="'Chọn video hoặc có thể kéo video vào để upload'" (success)="onUploadSuccess($event)"></dropzone>
+                            @if (fileLoadUpload || isReviewVideo) {
+                            <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                <div class="border rounded">
+                                    <div class="d-flex flex-wrap gap-2 p-2">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar-sm bg-light rounded p-2">
+                                                <img class="img-fluid rounded d-block" src="assets/images/default_icon.png" alt="Dropzone-Image" />
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <div class="pt-1">
+                                                @if (fileLoadUpload) {<h5 class="fs-md mb-1">{{ fileLoadUpload.name }}</h5>} @else {<h5 class="fs-md mb-1">{{ contentCourseDetail?.fileNameVideo }}</h5>}
+                                                @if (fileLoadUpload) {<p class="fs-sm text-muted mb-0">{{ fileLoadUpload?.size }}</p>}
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0 ms-3">
+                                            <button type="button" (click)="removeFile()" class="btn btn-sm btn-danger">Edit of video</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                            }
+                            <!-- end dropzon-preview -->
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="Property-title-input" class="form-label">Title <span class="text-danger">*</span></label>
+                                    <input type="text" id="Property-title-input" class="form-control" placeholder="Input the title of content" required formControlName="nameSubContent">
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-4">
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="additionalFeatures" formControlName="isLearningFree">
+                                    <label class="form-check-label" for="additionalFeatures">Preview Video</label>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-12">
+                                <div class="hstack gap-2 justify-content-end">
+                                    <button type="button" class="btn btn-secondary"><i class="bi bi-repeat align-baseline me-1"></i> Reset</button>
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-clipboard2-check align-baseline me-1"></i> Save</button>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                    </form>
+                </app-hdnx-loading>
+            </div>
+        </div><!--end col-->
+    </div><!--end card-->
+
+
+
+    <div class="row" id="search-result-elem" style="display: none;">
+        <div class="col-lg-12">
+            <div class="text-center py-5">
+                <div class="avatar-lg mx-auto mb-4">
+                    <div class="avatar-title bg-light text-primary rounded-circle fs-4xl">
+                        <i class="bi bi-search"></i>
+                    </div>
+                </div>
+                <h5>Not found anything</h5>
+            </div>
+        </div>
+    </div>
+    <!-- end search-result -->
+</div><!--end col-->
+
+
+<!-- deleteRecordModal -->
+<div id="addContentCourseModal" class="modal fade zoomIn" bsModal #addContentCourseModal="bs-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-secondary p-3">
+                <h5 class="modal-title text-white" id="addCategoryLabel">Add more the chapter</h5>
+                <button type="button" class="btn-close" id="deleteRecord-close" (click)="addContentCourseModal.hide()"></button>
+            </div>
+            <form (submit)="saveContentCourse()" class="tablelist-form" novalidate autocomplete="off" [formGroup]="contentCourseForm">
+                <div class="modal-body p-md-5">
+                    <div class="mb-3">
+                        <label for="category-title-input" class="form-label">Name chapter<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="address-input" rows="3" placeholder="Input name of the chapter" formControlName="contentCourse" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                        <button type="button" class="btn w-sm btn-light btn-hover" (click)="addContentCourseModal.hide()">Close</button>
+                        <button type="submit" class="btn w-sm btn-danger btn-hover" id="delete-record">Create</button>
+                    </div>
+                </div>
+            </form>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

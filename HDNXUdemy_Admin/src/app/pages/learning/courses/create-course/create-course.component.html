@@ -1,0 +1,290 @@
+<!-- Start Breadcrumbs -->
+<app-breadcrumbs title="Add Course" [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+<!-- End Breadcrumbs -->
+
+<div class="row">
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Infomation of course</h5>
+            </div>
+            <div class="card-body">
+                <form action="#!" (ngSubmit)="saveCourse()" [formGroup]="courseForm">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">The images of course<span class="text-danger">*</span></label>
+                                <dropzone class="dropzone" [config]="dropzoneImagesConfig" [message]="'Chose the images for upload'" (success)="onUploadFileImagesSuccess($event)"></dropzone>
+                                @if (uploadedFileImages) {
+                                <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                    @for (file of uploadedPictureFiles; track $index) {
+                                    <li class="mt-2" id="dropzone-preview-list">
+                                        <div class="border rounded">
+                                            <div class="d-flex flex-wrap gap-2 p-2">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar-sm bg-light rounded p-2">
+                                                        @if (file.dataURL) {
+                                                        <img class="img-fluid rounded d-block" [src]="file.dataURL" alt="Dropzone-Image" />
+                                                        }@else {
+                                                        <img class="img-fluid rounded d-block" [src]="file" alt="Dropzone-Image" />
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="pt-1">
+                                                        @if (file.name) {<h5 class="fs-md mb-1">{{ file.name }}</h5>}
+                                                        @if (file.size) {<p class="fs-sm text-muted mb-0">{{ file.size }}</p>}
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-3">
+                                                    <button (click)="removeFile(file)" class="btn btn-sm btn-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    }
+                                </ul>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Video preview<span class="text-danger">*</span></label>
+                                <dropzone class="dropzone" [config]="dropzoneVideoConfig" [message]="'Chose the video and upload'" (success)="onUploadFileVideoSuccess($event)"></dropzone>
+                                @if (uploadedVideoFiles) {
+                                <ul class="list-unstyled mb-0" id="dropzone-preview">
+                                    @for (file of uploadedVideoFiles; track $index) {
+                                    <li class="mt-2" id="dropzone-preview-list">
+                                        <div class="border rounded">
+                                            <div class="d-flex flex-wrap gap-2 p-2">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar-sm bg-light rounded p-2">
+                                                        @if (file.dataURL || file.fileUrl) {
+                                                        <img class="img-fluid rounded d-block" src="assets/images/default_icon.png" alt="Dropzone-Image" />
+                                                        }@else {
+                                                        <img class="img-fluid rounded d-block" src="assets/images/default_icon.png" alt="Dropzone-Image" />
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <div class="pt-1">
+                                                        @if (file.name || file.fileUrl) {
+                                                        <h5 class="fs-md mb-1">{{ file.name != null ? file.name : file.keyOfFile }}</h5>
+                                                        }
+                                                        @if (file.size || file.fileSize) {
+                                                        <p class="fs-sm text-muted mb-0">{{ file.size != null ? file.size : file.fileSize }}</p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="flex-shrink-0 ms-3">
+                                                    <button (click)="removeFile(file)" class="btn btn-sm btn-danger">Xoá</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    }
+                                </ul>
+                                }
+                                <!-- end dropzon-preview -->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label for="Property-title-input" class="form-label">Title of the course<span class="text-danger">*</span></label>
+                                <input type="text" id="Property-title-input" class="form-control" placeholder="Title of the course" required formControlName="title">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="course-category-input" class="form-label">Category<span class="text-danger">*</span></label>
+                                <select class="form-select" id="course-category-input" data-choices formControlName="idCategory">
+                                    <option value='0'>Type of course</option>
+                                    <option [value]="item.id" *ngFor="let item of categories">{{item.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="lavel-input" class="form-label">Level of course<span class="text-danger">*</span></label>
+                                <ng-select [items]="items" [multiple]="false" bindLabel="name" placeholder="Level of course" formControlName="levelCourse"></ng-select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div>
+                                <label for="duration-input" class="form-label">Time of course<span class="text-danger">*</span></label>
+                                <input type="text" id="duration-input" class="form-control" placeholder="Time of course" required formControlName="duration">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div>
+                                <label for="lessons-input" class="form-label">Number of lessons<span class="text-danger">*</span></label>
+                                <input type="number" id="lessons-input" class="form-control" placeholder="Number of lessons" required formControlName="totalChapter">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label for="shortDescription" class="form-label">Short description<span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="shortDescription" rows="3" placeholder="Short description" formControlName="shortDescription"></textarea>
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <label class="form-label">Description<span class="text-danger">*</span></label>
+                                <ckeditor [editor]="Editor" data="<p>Description</p>" formControlName="description"></ckeditor>
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="Property-price-input" class="form-label">Price<span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input appFormatMoney type="text" maxlength="99" class="form-control" id="Property-price-input" placeholder="Price" required formControlName="priceOfCourse">
+                                </div>
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="Property-price-input" class="form-label">Discount Price<span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input appFormatMoney type="text" class="form-control" id="Property-price-input" placeholder="Discount Price" required formControlName="priceOfDiscount">
+                                </div>
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-4">
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="additionalFeatures" formControlName="isFree">
+                                <label class="form-check-label" for="additionalFeatures">Free</label>
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-4">
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="additionalFeatures2" formControlName="isDiscount">
+                                <label class="form-check-label" for="additionalFeatures2">Discount</label>
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-12">
+                            <div class="hstack gap-2 justify-content-end">
+                                <button type="button" class="btn btn-secondary"><i class="bi bi-repeat align-baseline me-1"></i>Reset</button>
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-clipboard2-check align-baseline me-1"></i>Update</button>
+                            </div>
+                        </div>
+                    </div><!--end row-->
+                </form>
+            </div>
+        </div><!--end card-->
+    </div><!--end col-->
+    <div class="col-lg-3">
+        <div class="card real-estate-grid-widgets card-animate">
+            <div class="card-body p-2">
+                <img [src]="uploadedFileImages.urlPicture" alt="" class="img-fluid rounded mx-auto d-block">
+                <button type="button" class="btn btn-subtle-warning custom-toggle btn-icon btn-sm active" data-bs-toggle="button"> 
+                    <span class="icon-on"><i class="bi bi-star"></i></span>
+                    <span class="icon-off"><i class="bi bi-star-fill"></i>4.5</span>
+                </button>
+                <div dropdown class="dropdown dropdown-real-estate">
+                    <button dropdownToggle class="btn btn-light btn-icon btn-sm" type="button">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul *bsDropdownMenu class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"><i class="bi bi-pencil-square me-1 align-baseline"></i> Edit</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"><i class="bi bi-trash3 me-1 align-baseline"></i> Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body p-3">
+                <p class="text-muted float-end mb-0"><i class="bi bi-star text-warning align-baseline me-1"></i> 4.5</p>
+                <span class="badge bg-danger-subtle text-danger fs-xxs mb-3"><i class="bi bi-house-door align-baseline me-1"></i>{{nameCategory}}</span>
+                <a href="javascript:void(0);">
+                    <h6 class="fs-lg text-capitalize text-truncate">{{courseForm.value.title}}</h6>
+                </a>
+                <ul class="list-unstyled vstack gap-2 mb-0">
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <i class="ph ph-book-open align-middle me-1 text-primary-emphasis"></i> Number of chapter
+                            </div>
+                            <div class="flex-shrink-0 text-muted">
+                                {{courseForm.value.totalChapter}}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <i class="ph ph-timer align-middle me-1 text-primary-emphasis"></i> Time of course
+                            </div>
+                            <div class="flex-shrink-0 text-muted">
+                                {{courseForm.value.duration}}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <i class="ph ph-chart-bar align-middle me-1 text-primary-emphasis"></i> Level
+                            </div>
+                            <div class="flex-shrink-0 text-muted">
+                                {{courseForm.value.levelCourse}}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <i class="bi bi-card-heading align-baseline me-1 text-primary-emphasis"></i> Certificate
+                            </div>
+                            <div class="flex-shrink-0 text-muted">
+                                Yes
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <i class="bi bi-repeat-1 align-baseline me-1 text-primary-emphasis"></i>Status of course
+                            </div>
+                            <div class="flex-shrink-0 text-muted">
+                                <span *ngIf="isCreateCourse" class="badge" class="bg-info-subtle text-info">Open</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="border-top border-dashed mt-3 pt-3 d-flex align-items-center justify-content-between gap-3">
+                    @if(courseForm.value.isDiscount == true)
+                    {
+                    <h4 class="text-truncate text-capitalize">${{courseForm.value.priceOfDiscount | numberFormatThousand}} <small class="text-decoration-line-through fs-xs text-muted align-baseline">{{courseForm.value.priceOfCourse |numberFormatThousand}}</small></h4>
+                    } @else {
+                    <h4 class="text-truncate text-capitalize">${{courseForm.value.priceOfCourse |numberFormatThousand}}</h4>
+                    }
+                </div>
+            </div>
+        </div><!--end card-->
+        <div class="card real-estate-grid-widgets card-animate">
+            <div class="card-body p-3">
+                <p class="text-muted"><i class="bi bi-geo-alt align-baseline me-1"></i>Rule of course</p>
+                <ul class="list-unstyled vstack gap-2 mb-0">
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1"><i class="ph ph-book-open align-middle me-1 text-primary-emphasis"></i>Size of video</div>
+                            <div class="flex-shrink-0 text-muted">100 MB</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1"><i class="ph ph-book-open align-middle me-1 text-primary-emphasis"></i>Time of video</div>
+                            <div class="flex-shrink-0 text-muted">5 phút</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div><!--end card-->
+
+    </div><!--end col-->
+
+</div><!--end row-->

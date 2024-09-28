@@ -1,0 +1,221 @@
+<div class="m-n2">
+    <div class="d-flex">
+        <div class="card file-manager-content-wrapper w-100 rounded-0 border border-1 border-top-0 border-bottom-0 shadow-none">
+            <div class="card-body">
+                <div class="d-flex gap-3 align-items-center mb-3">
+                    <div class="flex-shrink-0 d-block d-lg-none">
+                        <button type="button" class="btn btn-icon btn-subtle-success file-menu-btn">
+                            <i class="ri-menu-2-fill align-bottom"></i>
+                        </button>
+                    </div>
+                    <div class="search-box flex-grow-1">
+                        <input type="text" class="form-control search" placeholder="Search products, price etc...">
+                        <i class="ri-search-line search-icon"></i>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <button type="button" class="btn btn-primary" (click)="addFileUpload()"><i class="bi bi-plus-lg align-baseline"></i> <span class="ms-1 d-none d-sm-inline-block">Upload Files</span></button>
+                    </div>
+                </div>
+                <div class="row row-cols-xxl-5">
+                    @for (data of file; track $index) {
+                    <div class="col">
+                        <a href="javascript:void(0);" class="card">
+                            <div class="card-body d-flex align-items-center gap-3 p-2">
+                                <div class="avatar-xs flex-shrink-0">
+                                    <div class="avatar-title bg-{{data.color}}-subtle text-{{data.color}}-emphasis fs-md rounded">
+                                        <i class="{{data.icon}}"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1  overflow-hidden">
+                                    <div class="d-flex flex-wrap text-muted">
+                                        <div class="flex-shrink-0"><b>{{data.num}} </b></div>
+                                        <div class="flex-grow-1 text-truncate ms-1"> {{data.type}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div><!--end col-->
+                    }
+                </div><!--end row-->
+
+                <div id="contactList" class="mt-2">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <h6 class="card-title flex-grow-1 mb-0">File upload to systems</h6>
+                        <div dropdown class="dropdown card-header-dropdown sortble-dropdown flex-shrink-0">
+                            <a dropdownToggle class="text-reset dropdown-btn" href="javascript:void(0);">
+                                <span class="fw-semibold text-uppercase fs-xs">Sort by:
+                                </span><span class="text-muted dropdown-title">{{sortValue}}</span> <i class="mdi mdi-chevron-down ms-1"></i>
+                            </a>
+                            <div *bsDropdownMenu class="dropdown-menu dropdown-menu-end">
+                                <button class="dropdown-item sort" filesortable="icon" (click)="sortBy('icon','Docs Type')">Docs Type</button>
+                                <button class="dropdown-item sort" filesortable="mb" (click)="sortBy('mb','Size')">Size</button>
+                                <button class="dropdown-item sort" filesortable="date" (click)="sortBy('date','Date')">Date</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
+                            <thead class="text-muted table-light">
+                                <tr>
+                                    <th scope="col" class="sort cursor-pointer" filesortable="icon" (click)="onSort('icon')">Type</th>
+                                    <th scope="col" class="sort cursor-pointer" filesortable="title" (click)="onSort('title')">Name file</th>
+                                    <th scope="col" class="sort cursor-pointer" filesortable="item" (click)="onSort('item')">File Id</th>
+                                    <th scope="col" class="sort cursor-pointer" filesortable="mb" (click)="onSort('mb')">Size</th>
+                                    <th scope="col" class="sort cursor-pointer">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list" id="file-list">
+                                @for (data of fileSoftwares; track $index) {
+                                <tr>
+                                    <td class="docs_type">
+                                        <i class="{{data.icon}} text-primary-emphasis fs-4"></i>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="text-reset document_name">{{data.actualNameFile}}</a>
+                                    </td>
+                                    <td class="file_item">{{data.fileUrl}}</td>
+                                    <td class="size">{{data.fileSize}}</td>
+                                    <td>
+                                        <ul class="d-flex gap-2 list-unstyled mb-0">
+                                            <li>
+                                                <a href="javascript:void(0);" class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn" (click)="editFileUpload(data.id)"><i class="ph-pencil"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn"><i class="ph-trash"></i></a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr><!-- end tr -->
+                                }
+                            </tbody><!-- end tbody -->
+                        </table><!-- end table -->
+                        <div class="noresult" style="display: none">
+                            <div class="text-center">
+                                <!-- <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon> -->
+                                <h5 class="mt-2">Sorry! No Result Found</h5>
+                                <p class="text-muted mb-0">We've searched more than 150+ transactions We did not find
+                                    any transactions for you search.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center text-center text-sm-start mt-3">
+                        <div class="col-sm">
+                            <div class="text-muted">
+                                Showing <span class="fw-semibold">{{recentDatas?.length}}</span> of <span class="fw-semibold">{{recentDatas?.length}}</span>
+                                Results
+                            </div>
+                        </div>
+                        <div class="col-sm-auto  mt-3 mt-sm-0">
+                            <pagination class="pagination-wrap hstack justify-content-center gap-2" [totalItems]="recentDatas?.length" (pageChanged)="pageChanged($event)" [itemsPerPage]="7"></pagination>
+                        </div>
+                    </div>
+                </div><!--end file tables-->
+            </div><!--end card-body-->
+        </div><!--end file-manager-content-wrapper-->
+    </div>
+</div>
+
+<div id="elmLoader">
+    <div class="spinner-border text-primary avatar-sm" role="status">
+        <span class="visually-hidden">Search...</span>
+    </div>
+</div>
+
+<!-- Modal -->
+<div bsModal #uploadFile="bs-modal" class="modal fade" id="createFolder">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createFolderLabel">File Upload</h5>
+                <button type="button" class="btn-close" (click)="uploadFile.hide()"></button>
+            </div>
+
+            <form class="tablelist-form" validate autocomplete="on" (submit)="saveFileUpload()" [formGroup]="fileUpload">
+                <div class="modal-body">
+                    <div id="alert-error-msg" class="d-none alert alert-danger py-2"></div>
+                    <input type="hidden" id="id-field">
+
+                    <input type="hidden" id="order-field">
+                    <input type="hidden" id="rating-field">
+                    <input type="hidden" id="discount-field">
+
+                    <div class="mb-3">
+                        <label for="product-title-input" class="form-label">Name of file upload</label>
+                        <input type="text" id="product-title-input" class="form-control" placeholder="Enter product title" required formControlName="actualNameFile">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">File Upload</label>
+                        <dropzone class="dropzone" [config]="dropzoneConfig" [message]="'Chọn file để upload.'" (success)="onUploadSuccess($event)" (removedFile)="removeFile($event)"></dropzone>
+
+                        @if (uploadedFiles) {
+                        <ul class="list-unstyled mb-0" id="dropzone-preview">
+                            @for (file of uploadedFiles; track $index) {
+                            <li class="mt-2" id="dropzone-preview-list">
+                                <div class="border rounded">
+                                    <div class="d-flex p-2">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar-sm bg-light rounded p-2">
+                                                @if (file.dataURL || file.fileUrl) {
+                                                <img class="img-fluid rounded d-block" src="assets/images/default_icon.png" alt="Dropzone-Image" />
+                                                }@else {
+                                                <img class="img-fluid rounded d-block" src="assets/images/default_icon.png" alt="Dropzone-Image" />
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <div class="pt-1">
+                                                @if (file.name || file.fileUrl) {
+                                                <h5 class="fs-md mb-1">{{ file.name != null ? file.name : file.keyOfFile }}</h5>
+                                                }
+                                                @if (file.size || file.fileSize) {
+                                                <p class="fs-sm text-muted mb-0">{{ file.size != null ? file.size : file.fileSize }}</p>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0 ms-3">
+                                            <button (click)="removeFile(file)" class="btn btn-sm btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            }
+                        </ul>
+                        }
+                        <!-- end dropzone-preview -->
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="product-category-input" class="form-label">List of document</label>
+
+                        <select class="form-select" id="product-category-input" formControlName="fileType">
+                            <option *ngFor="let fileTypeUpload of fileTypeUploads" [value]="fileTypeUpload.idTypeFile">{{fileTypeUpload.nameTypeFileType}}</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="product-category-input" class="form-label">List of type for file</label>
+
+                        <select class="form-select" id="product-category-input" formControlName="extendFile">
+                            <option *ngFor="let fileTypeUpload of fileOfTypeUploads" [value] ="fileTypeUpload.idTypeFile">{{fileTypeUpload.nameOfFileType}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-check form-switch hstack gap-2 justify-content-end pt-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="SwitchCheck1" formControlName="isFree">
+                        <label class="form-check-label" for="SwitchCheck1">Is Free</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-ghost-danger" (click)="uploadFile.hide()"><i class="bi bi-x-lg align-baseline me-1"></i> Close</button>
+                        <button type="submit" class="btn btn-primary" id="add-btn">Create file</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- modal-content -->
+    </div>
+</div>

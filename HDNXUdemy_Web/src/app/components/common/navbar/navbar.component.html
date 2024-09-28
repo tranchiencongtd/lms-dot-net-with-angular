@@ -1,0 +1,163 @@
+<div class="navbar-area" [ngClass]="{ sticky: isSticky }">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" [class.active]="classApplied">
+            <a class="navbar-brand" routerLink="/"><img src="assets/img/logo.png" alt="logo" /></a>
+            <button class="navbar-toggler" type="button" (click)="toggleClass()">
+                <span class="burger-menu">
+                    <span class="top-bar"></span>
+                    <span class="middle-bar"></span>
+                    <span class="bottom-bar"></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="search-box">
+                    <input type="text" class="input-search" placeholder="Find the course on the system" />
+                    <button type="submit">
+                        <i class="flaticon-search"></i>
+                    </button>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Course <i class="bx bx-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item" *ngFor="let item of categories">
+                                <a href="javascript:void(0)" (click)="goToViewDetailCourseOfCategory(item.id)" routerLinkActive="active">{{item.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/products" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/download-document" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/news" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About Us</a>
+                    </li>
+                    <li class="nav-item border-animation" style="margin-left: 20px; margin-right: 20px;">
+                        <a routerLink="/training-online" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Training Online</a>
+                    </li>
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item">
+                            <div class="cart-btn">
+                                <a routerLink="/cart"><i class="flaticon-shopping-cart"></i><span>{{count}}</span></a>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="cart-btn">
+                                <a routerLink="/notification"><i class="bx bx-bell"></i><span>{{count}}</span></a>
+                            </div>
+                        </div>
+                        <ul class="navbar-nav" *ngIf="isMemberAccount">
+                            <li class="nav-item">
+                                <div class="client-info_nav">
+                                    <img src="{{userStudent?.pictureUrl}}" class="rounded-circle" alt="image" />
+                                    <div class="title">
+                                        <h3>{{userStudent?.name}}</h3>
+                                        <span>{{userStudent?.roleName}}</span>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a routerLink="/my-information" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Person Infomation</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a routerLink="/bookmark-course" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Bookmark Course</a>
+                                    </li>
+                                    <li class="nav-item e">
+                                        <a routerLink="/my-course" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">My Course</a>
+                                    </li>
+                                    <div class="border-profile"></div>
+
+                                    <li class="nav-item">
+                                        <a routerLink="/become-teacher" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Become Teacher</a>
+                                    </li>
+                                    <div class="border-profile"></div>
+
+                                    <li class="nav-item">
+                                        <a (click)="logoutAccount()" href="javascript:void(0)">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+                <ul class="navbar-nav for-responsive">
+                    <li class="nav-item">
+                        <a routerLink="/training-online" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Training online</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">Course<i class="bx bx-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item" *ngFor="let item of categories">
+                                <a href="javascript:void(0)" (click)="goToViewDetailCourseOfCategory(item.id)" routerLinkActive="active">{{item.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/products" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/download-document" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/news" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/about" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About Us</a>
+                    </li>
+                    <li class="nav-item border-animation" style="margin-left: 20px; margin-right: 20px;">
+                        <a routerLink="/training-online" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Training Online</a>
+                    </li>
+                    <div class="others-option d-flex align-items-center">
+                        <div class="option-item">
+                            <div class="cart-btn">
+                                <a routerLink="/cart"><i class="flaticon-shopping-cart"></i><span>{{count}}</span></a>
+                            </div>
+                        </div>
+                        <div class="option-item">
+                            <div class="cart-btn">
+                                <a routerLink="/notification"><i class="bx bx-bell"></i><span>{{count}}</span></a>
+                            </div>
+                        </div>
+                        <ul class="navbar-nav" *ngIf="isMemberAccount">
+                            <li class="nav-item">
+                                <div class="client-info_nav">
+                                    <img src="{{userStudent?.pictureUrl}}" class="rounded-circle" alt="image" />
+                                    <div class="title">
+                                        <h3>{{userStudent?.name}}</h3>
+                                        <span>{{userStudent?.roleName}}</span>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a routerLink="/my-information" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Person Infomation</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a routerLink="/bookmark-course" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Bookmark Course</a>
+                                    </li>
+                                    <li class="nav-item e">
+                                        <a routerLink="/my-course" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">My Course</a>
+                                    </li>
+                                    <div class="border-profile"></div>
+
+                                    <li class="nav-item">
+                                        <a routerLink="/become-teacher" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Become Teacher</a>
+                                    </li>
+                                    <div class="border-profile"></div>
+
+                                    <li class="nav-item">
+                                        <a (click)="logoutAccount()" href="javascript:void(0)">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
